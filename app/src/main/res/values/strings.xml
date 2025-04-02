@@ -1,0 +1,112 @@
+<resources>
+    <string name="app_name">SkyEvent</string>
+    <string name="open_weather_api_key">339fbf23040d10ed9d2f8275180603b7</string>
+    <string name="yandex_maps_api_key">52e257d6-cf2e-4706-91c0-5bdc5804f220</string>
+    <string name="default_web_client_id" translatable="false">437605857257-f7g8j26mhs1v53c39qcpjt90aei1u8qk.apps.googleusercontent.com</string>
+    
+    <!-- Навигация -->
+    <string name="nav_weather">Погода</string>
+    <string name="nav_events">События</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="nav_map">Карта</string>
+    
+    <!-- Погода -->
+    <string name="weather">Погода</string>
+    <string name="current_weather">Текущая погода</string>
+    <string name="forecast">Прогноз</string>
+    <string name="temperature">Температура</string>
+    <string name="min_temperature">Минимальная температура</string>
+    <string name="max_temperature">Максимальная температура</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="max_wind_speed">Максимальная скорость ветра</string>
+    <string name="no_rain">Без осадков</string>
+    <string name="loading">Загрузка...</string>
+    <string name="error_weather">Ошибка при загрузке погоды</string>
+    
+    <!-- События -->
+    <string name="events">События</string>
+    <string name="event_details">Детали события</string>
+    <string name="new_event">Создание события</string>
+    <string name="edit_event">Редактирование события</string>
+    <string name="event_name">Название события</string>
+    <string name="event_description">Описание события</string>
+    <string name="event_date">Дата события</string>
+    <string name="event_location">Местоположение</string>
+    <string name="select_location">Выбрать местоположение</string>
+    <string name="auto_select_date">Выбрать дату</string>
+    <string name="save_event">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="event_created">Событие создано</string>
+    <string name="event_updated">Событие обновлено</string>
+    <string name="event_deleted">Событие удалено</string>
+    <string name="error_create_event">Ошибка при создании события</string>
+    <string name="error_update_event">Ошибка при обновлении события</string>
+    <string name="error_delete_event">Ошибка при удалении события</string>
+    <string name="error_load_events">Ошибка при загрузке событий</string>
+    <string name="no_events">Нет событий</string>
+    <string name="enter_event_name">Введите название события</string>
+    <string name="select_event_date">Выберите дату события</string>
+    <string name="select_event_location">Выберите местоположение события</string>
+    
+    <!-- Профиль -->
+    <string name="sign_in">Войти</string>
+    <string name="sign_out">Выйти</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="profile_settings">Настройки профиля</string>
+    <string name="notification_settings">Настройки уведомлений</string>
+    <string name="enable_notifications">Включить уведомления</string>
+    <string name="notification_time">Время уведомления перед событием</string>
+    
+    <!-- Аутентификация -->
+    <string name="login">Войти</string>
+    <string name="logout">Выйти</string>
+    <string name="login_success">Вы успешно вошли в систему</string>
+    <string name="login_error">Ошибка авторизации</string>
+    <string name="register_success">Регистрация успешна</string>
+    <string name="register_error">Ошибка регистрации</string>
+    <string name="logout_success">Вы вышли из системы</string>
+    <string name="login_required">Для доступа к этой функции необходимо авторизоваться</string>
+    
+    <!-- Общие -->
+    <string name="error">Ошибка</string>
+    <string name="success">Успешно</string>
+    <string name="ok">OK</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="confirmation">Подтверждение</string>
+    <string name="delete_confirmation">Вы уверены, что хотите удалить?</string>
+    <string name="settings">Настройки</string>
+    
+    <!-- Дополнительные строки для фрагмента создания события -->
+    <string name="title_home">Главная</string>
+    <string name="title_events">События</string>
+    <string name="title_weather">Погода</string>
+    <string name="title_map">Карта</string>
+    <string name="title_profile">Профиль</string>
+    <string name="event_weather_conditions">Погодные условия</string>
+    <string name="event_min_temp">Минимальная температура</string>
+    <string name="event_max_temp">Максимальная температура</string>
+    <string name="event_max_wind">Максимальная скорость ветра</string>
+    <string name="event_no_rain">Без осадков</string>
+    <string name="save">Сохранить</string>
+    <string name="event_saved">Событие сохранено</string>
+    <string name="retry">Повторить</string>
+    <string name="hourly_forecast">Почасовой прогноз</string>
+    <string name="daily_forecast">Прогноз на 5 дней</string>
+    <string name="monthly_forecast">Прогноз на 30 дней</string>
+    <string name="feels_like">Ощущается как: %d°C</string>
+    <string name="humidity">Влажность: %d%%</string>
+    <string name="pressure">Давление: %d мм рт.ст.</string>
+    <string name="error_location_unavailable">Не удалось получить текущее местоположение</string>
+    <string name="error_location_permission">Для получения погоды необходимы разрешения на местоположение</string>
+    <string name="error_location_failure">Ошибка при определении местоположения</string>
+    <string name="location_permission_title">Разрешите доступ к местоположению</string>
+    <string name="location_permission_explanation">Для отображения погоды в вашем местоположении нам нужен доступ к геолокации. Пожалуйста, предоставьте разрешение.</string>
+    <string name="location_services_title">Включите геолокацию</string>
+    <string name="location_services_message">Для определения вашего местоположения и отображения точного прогноза погоды, пожалуйста, включите службы геолокации на вашем устройстве.</string>
+    <string name="enable">Включить</string>
+    <string name="error_location_disabled">Службы геолокации отключены</string>
+</resources>

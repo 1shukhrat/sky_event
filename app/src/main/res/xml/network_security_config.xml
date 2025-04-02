@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">openweathermap.org</domain>
+        <domain includeSubdomains="true">proxy.mob.maps.yandex.net</domain>
+        <domain includeSubdomains="true">maps.yandex.net</domain>
+        <domain includeSubdomains="true">yandex.ru</domain>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+        <debug-overrides>
+            <trust-anchors>
+                <certificates src="system" />
+                <certificates src="user" />
+            </trust-anchors>
+        </debug-overrides>
+    </domain-config>
+</network-security-config> 

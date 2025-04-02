@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <color name="primary_night">#678AFF</color>
+    <color name="primary_dark_night">#5173EA</color>
+    <color name="primary_light_night">#94AAFF</color>
+    <color name="accent_night">#FF6E9C</color>
+    <color name="accent_light_night">#FFA0C0</color>
+    
+    <color name="background_night">#121726</color>
+    <color name="surface_night">#232C4A</color>
+    <color name="card_background_night">#2A345A</color>
+    <color name="error_night">#FF5D74</color>
+    
+    <color name="text_primary_night">#F8FAFF</color>
+    <color name="text_secondary_night">#C8D0E9</color>
+    <color name="text_hint_night">#7A83A0</color>
+    <color name="text_disabled_night">#56607D</color>
+    
+    <color name="divider_night">#2C3452</color>
+    <color name="ripple_night">#364064</color>
+    
+    <color name="chip_background">#364064</color>
+    <color name="purple_500">#678AFF</color>
+    
+    <color name="google_text_color">#BDBDBD</color>
+    <color name="google_button_background">#2A345A</color>
+</resources> 

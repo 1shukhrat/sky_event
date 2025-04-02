@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/action_add_to_calendar"
+        android:title="Добавить в календарь"
+        android:icon="@drawable/ic_calendar_add"
+        app:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/action_share"
+        android:title="Поделиться"
+        android:icon="@drawable/ic_share"
+        app:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/action_delete"
+        android:title="Удалить"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="never" />
+    
+</menu> 

@@ -1,0 +1,158 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SkyEvent" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimary">@color/primary_night</item>
+        <item name="colorPrimaryVariant">@color/primary_dark_night</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/accent_night</item>
+        <item name="colorSecondaryVariant">@color/accent_light_night</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <item name="colorError">@color/error_night</item>
+        <item name="colorOnError">@color/white</item>
+        
+        <item name="android:colorBackground">@color/background_night</item>
+        <item name="colorOnBackground">@color/text_primary_night</item>
+        
+        <item name="colorSurface">@color/surface_night</item>
+        <item name="colorOnSurface">@color/text_primary_night</item>
+        
+        <item name="android:statusBarColor">@color/background_night</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/background_night</item>
+        
+        <item name="textAppearanceHeadline1">@style/TextAppearance.SkyEvent.Headline1.Night</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.SkyEvent.Headline2.Night</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.SkyEvent.Headline3.Night</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.SkyEvent.Body1.Night</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.SkyEvent.Body2.Night</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.SkyEvent.Caption.Night</item>
+        
+        <item name="materialCardViewStyle">@style/Widget.SkyEvent.CardView.Night</item>
+        <item name="textInputStyle">@style/Widget.SkyEvent.TextInputLayout.Night</item>
+        <item name="materialButtonStyle">@style/Widget.SkyEvent.Button.Night</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.SkyEvent.Button.Outlined.Night</item>
+        <item name="bottomNavigationStyle">@style/Widget.SkyEvent.BottomNavigation.Night</item>
+        <item name="chipStyle">@style/Widget.SkyEvent.Chip.Night</item>
+        <item name="floatingActionButtonStyle">@style/Widget.SkyEvent.FloatingActionButton.Night</item>
+    </style>
+    
+    <style name="TextAppearance.SkyEvent.Headline1.Night" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/text_primary_night</item>
+    </style>
+    
+    <style name="TextAppearance.SkyEvent.Headline2.Night" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text_primary_night</item>
+    </style>
+    
+    <style name="TextAppearance.SkyEvent.Headline3.Night" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_primary_night</item>
+    </style>
+    
+    <style name="TextAppearance.SkyEvent.Body1.Night" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary_night</item>
+    </style>
+    
+    <style name="TextAppearance.SkyEvent.Body2.Night" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary_night</item>
+    </style>
+    
+    <style name="TextAppearance.SkyEvent.Caption.Night" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary_night</item>
+    </style>
+    
+    <style name="Widget.SkyEvent.CardView.Night" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="contentPadding">0dp</item>
+        <item name="cardBackgroundColor">@color/card_background_night</item>
+        <item name="rippleColor">@color/ripple_night</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+    
+    <style name="Widget.SkyEvent.TextInputLayout.Night" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxStrokeColor">@color/primary_night</item>
+        <item name="hintTextColor">@color/primary_night</item>
+        <item name="errorIconTint">@color/error_night</item>
+        <item name="errorTextColor">@color/error_night</item>
+        <item name="boxStrokeWidth">1.5dp</item>
+    </style>
+    
+    <style name="Widget.SkyEvent.Button.Night" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary_night</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="elevation">1dp</item>
+    </style>
+    
+    <style name="Widget.SkyEvent.Button.Outlined.Night" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/primary_night</item>
+        <item name="android:textColor">@color/primary_night</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="rippleColor">@color/ripple_night</item>
+        <item name="strokeWidth">1.5dp</item>
+    </style>
+    
+    <style name="Widget.SkyEvent.Button.Text.Night" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/primary_night</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="rippleColor">@color/ripple_night</item>
+    </style>
+    
+    <style name="Widget.SkyEvent.BottomNavigation.Night" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/primary_night</item>
+        <item name="itemTextColor">@color/primary_night</item>
+        <item name="itemRippleColor">@color/ripple_night</item>
+        <item name="elevation">4dp</item>
+        <item name="backgroundTint">@color/surface_night</item>
+    </style>
+    
+    <style name="Widget.SkyEvent.Chip.Night" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipCornerRadius">16dp</item>
+        <item name="android:textColor">@color/text_primary_night</item>
+        <item name="rippleColor">@color/ripple_night</item>
+    </style>
+    
+    <style name="Widget.SkyEvent.FloatingActionButton.Night" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/primary_night</item>
+        <item name="tint">@color/white</item>
+        <item name="borderWidth">0dp</item>
+        <item name="elevation">6dp</item>
+        <item name="rippleColor">@color/ripple_night</item>
+    </style>
+</resources>

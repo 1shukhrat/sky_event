@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/weatherFragment">
+
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.example.sky_event.fragments.WeatherFragment"
+        android:label="Погода"
+        tools:layout="@layout/fragment_weather" />
+
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.example.sky_event.fragments.EventsFragment"
+        android:label="События"
+        tools:layout="@layout/fragment_events">
+        <action
+            android:id="@+id/action_eventsFragment_to_eventDetailsFragment"
+            app:destination="@id/eventDetailsFragment" />
+        <action
+            android:id="@+id/action_eventsFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_eventsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_eventsFragment_to_eventEditorFragment"
+            app:destination="@id/eventEditorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="com.example.sky_event.fragments.EventDetailsFragment"
+        android:label="Детали события"
+        tools:layout="@layout/fragment_event_details">
+        <argument
+            android:name="eventId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_eventDetailsFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_eventDetailsFragment_to_eventParticipantsFragment"
+            app:destination="@id/eventParticipantsFragment" />
+        <action
+            android:id="@+id/action_eventDetailsFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventParticipantsFragment"
+        android:name="com.example.sky_event.fragments.EventParticipantsFragment"
+        android:label="Участники события"
+        tools:layout="@layout/fragment_event_participants">
+        <argument
+            android:name="eventId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="com.example.sky_event.fragments.CreateEventFragment"
+        android:label="Создание события"
+        tools:layout="@layout/fragment_create_event">
+        <argument
+            android:name="eventId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_createEventFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_createEventFragment_to_datePickerFragment"
+            app:destination="@id/datePickerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/datePickerFragment"
+        android:name="com.example.sky_event.fragments.DatePickerFragment"
+        android:label="Выбор оптимальной даты"
+        tools:layout="@layout/fragment_date_picker">
+        <argument
+            android:name="event"
+            app:argType="com.example.sky_event.models.event.Event" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.sky_event.fragments.MapFragment"
+        android:label="Выбор местоположения"
+        tools:layout="@layout/fragment_map">
+        <argument
+            android:name="latitude"
+            app:argType="float"
+            android:defaultValue="0.0" />
+        <argument
+            android:name="longitude"
+            app:argType="float"
+            android:defaultValue="0.0" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.sky_event.fragments.ProfileFragment"
+        android:label="Профиль"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" 
+            app:popUpTo="@id/weatherFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventEditorFragment"
+        android:name="com.example.sky_event.fragments.EventEditorFragment"
+        android:label="Редактирование события"
+        tools:layout="@layout/fragment_event_editor">
+        <argument
+            android:name="eventId"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_eventEditorFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.sky_event.fragments.LoginFragment"
+        android:label="Вход"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.sky_event.fragments.RegisterFragment"
+        android:label="Регистрация"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_registerFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation> 

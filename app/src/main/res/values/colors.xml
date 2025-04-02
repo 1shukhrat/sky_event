@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <color name="primary">#536DFE</color>
+    <color name="primary_dark">#3D5AFE</color>
+    <color name="primary_light">#8C9EFF</color>
+    <color name="accent">#FF4081</color>
+    <color name="accent_light">#FF80AB</color>
+    
+    <color name="background">#F8F9FF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#FF3D00</color>
+    
+    <color name="text_primary">#1A237E</color>
+    <color name="text_secondary">#5C6BC0</color>
+    <color name="text_hint">#9FA8DA</color>
+    <color name="text_disabled">#D1D9FF</color>
+    
+    <color name="divider">#E8EAF6</color>
+    <color name="ripple">#E8EAF6</color>
+    
+    <color name="chip_background">#E8EAF6</color>
+    <color name="purple_500">#536DFE</color>
+    
+    <color name="google_text_color">#757575</color>
+    <color name="google_button_background">#FFFFFF</color>
+    
+    <color name="green_100">#C8E6C9</color>
+    <color name="green_700">#388E3C</color>
+    <color name="red_100">#FFCDD2</color>
+    <color name="red_700">#D32F2F</color>
+    
+    <color name="weather_alert_color">#FF5722</color>
+    <color name="event_reminder_color">#3F51B5</color>
+    <color name="weather_change_color">#2196F3</color>
+</resources>

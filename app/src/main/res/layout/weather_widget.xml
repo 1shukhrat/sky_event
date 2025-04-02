@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/widget_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/widget_background"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/widget_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/widget_refresh_button"
+        android:text="Москва"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-medium"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+    <ImageButton
+        android:id="@+id/widget_refresh_button"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_refresh"
+        android:tint="@color/white"
+        android:contentDescription="Обновить" />
+
+    <TextView
+        android:id="@+id/widget_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_location"
+        android:layout_alignParentStart="true"
+        android:text="01.01.2023"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:alpha="0.8" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_date"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/widget_weather_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_weather_sunny"
+            android:contentDescription="Иконка погоды" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/widget_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25°C"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:fontFamily="sans-serif-light" />
+
+            <TextView
+                android:id="@+id/widget_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ясно"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/widget_weather_recommendation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Хорошая погода для мероприятий"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:layout_marginTop="4dp"
+                android:alpha="0.9" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout> 

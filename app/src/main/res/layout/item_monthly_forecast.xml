@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tempText"
+            tools:text="Пн, 10 апр" />
+
+        <TextView
+            android:id="@+id/tempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10°/17°" />
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateText"
+            tools:src="@drawable/ic_weather_01d" />
+
+        <TextView
+            android:id="@+id/weatherConditionText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/weatherIcon"
+            app:layout_constraintTop_toTopOf="@+id/weatherIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/weatherIcon"
+            tools:text="Переменная облачность" />
+
+        <ImageView
+            android:id="@+id/windIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_wind"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weatherIcon" />
+
+        <TextView
+            android:id="@+id/windText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/windIcon"
+            app:layout_constraintTop_toTopOf="@+id/windIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/windIcon"
+            tools:text="5.2 м/с" />
+
+        <ImageView
+            android:id="@+id/humidityIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_humidity"
+            app:layout_constraintStart_toEndOf="@+id/windText"
+            app:layout_constraintTop_toTopOf="@+id/windIcon" />
+
+        <TextView
+            android:id="@+id/humidityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/humidityIcon"
+            app:layout_constraintTop_toTopOf="@+id/humidityIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/humidityIcon"
+            tools:text="65%" />
+
+        <ImageView
+            android:id="@+id/rainIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_rain"
+            app:layout_constraintStart_toEndOf="@+id/humidityText"
+            app:layout_constraintTop_toTopOf="@+id/humidityIcon" />
+
+        <TextView
+            android:id="@+id/rainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/rainIcon"
+            app:layout_constraintTop_toTopOf="@+id/rainIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/rainIcon"
+            tools:text="2.5 мм" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView> 

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "989087351121",
+    "project_id": "sky-event-8f31f",
+    "storage_bucket": "sky-event-8f31f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989087351121:android:0438799ca8dd1637c31370",
+        "android_client_info": {
+          "package_name": "com.example.sky_event"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989087351121-r9s5snto7tojnsfcnluf17p04f6l1uhp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sky_event",
+            "certificate_hash": "aeaeda61df6d1ec262b9438eb7086ad4cf803207"
+          }
+        },
+        {
+          "client_id": "989087351121-4fnbqnip674att542hqbk3shikljndpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6ruwBemXURmaQ1WbE1MLG3vwloZBcGsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989087351121-4fnbqnip674att542hqbk3shikljndpk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "989087351121-nmns9t7pj1ojejk32codf1lm9ciavrrs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.skyEvent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
