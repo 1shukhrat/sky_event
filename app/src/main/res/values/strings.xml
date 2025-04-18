@@ -100,6 +100,7 @@
     <string name="feels_like">Ощущается как: %d°C</string>
     <string name="humidity">Влажность: %d%%</string>
     <string name="pressure">Давление: %d мм рт.ст.</string>
+    <string name="wind">Скорость ветра: %d м/c.</string>
     <string name="error_location_unavailable">Не удалось получить текущее местоположение</string>
     <string name="error_location_permission">Для получения погоды необходимы разрешения на местоположение</string>
     <string name="error_location_failure">Ошибка при определении местоположения</string>

@@ -17,7 +17,6 @@ import android.os.PowerManager;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.Observer;
 
 import com.example.sky_event.R;
 import com.example.sky_event.activities.MainActivity;
@@ -196,7 +195,7 @@ public class WeatherMonitoringService extends Service {
                 currentWeather.getTemperature(),
                 currentWeather.getWindSpeed(),
                 currentWeather.getMainCondition(),
-                currentWeather.isHasRain(),
+                currentWeather.isHasPrecipitation(),
                 currentWeather.getHumidity());
         
         boolean weatherChanged = false;
@@ -230,7 +229,7 @@ public class WeatherMonitoringService extends Service {
     private boolean isWeatherChanged(WeatherEntity previous, WeatherEntity current) {
         boolean tempChanged = Math.abs(previous.getTemperature() - current.getTemperature()) > 2;
         boolean windChanged = Math.abs(previous.getWindSpeed() - current.getWindSpeed()) > 1.5;
-        boolean rainChanged = previous.isHasRain() != current.isHasRain();
+        boolean rainChanged = previous.isHasPrecipitation() != current.isHasPrecipitation();
         boolean conditionChanged = !previous.getMainCondition().equals(current.getMainCondition());
         
         return tempChanged || windChanged || rainChanged || conditionChanged;
@@ -251,7 +250,7 @@ public class WeatherMonitoringService extends Service {
                 .append(Math.round(weatherEntity.getWindSpeed()))
                 .append(" м/с");
                 
-        if (weatherEntity.isHasRain()) {
+        if (weatherEntity.isHasPrecipitation()) {
             message.append(", осадки");
         }
         
@@ -403,7 +402,7 @@ public class WeatherMonitoringService extends Service {
               .append(Math.round(oldWeather.getWindSpeed()))
               .append(" м/с");
         
-        if (oldWeather.isHasRain()) {
+        if (oldWeather.isHasPrecipitation()) {
             message.append(", осадки");
         }
         
@@ -415,7 +414,7 @@ public class WeatherMonitoringService extends Service {
               .append(Math.round(newWeather.getWindSpeed()))
               .append(" м/с");
         
-        if (newWeather.isHasRain()) {
+        if (newWeather.isHasPrecipitation()) {
             message.append(", осадки");
         }
         
@@ -424,7 +423,7 @@ public class WeatherMonitoringService extends Service {
                 newWeather.getTemperature(),
                 newWeather.getWindSpeed(),
                 newWeather.getMainCondition(),
-                newWeather.isHasRain(),
+                newWeather.isHasPrecipitation(),
                 newWeather.getHumidity());
         
         message.append("\n\nТекущие условия ");
@@ -453,7 +452,7 @@ public class WeatherMonitoringService extends Service {
                     forecast.getTemperature(),
                     forecast.getWindSpeed(),
                     forecast.getMainCondition(),
-                    forecast.isHasRain(),
+                    forecast.isHasPrecipitation(),
                     forecast.getHumidity());
             
             if (isSuitable) {
@@ -474,7 +473,7 @@ public class WeatherMonitoringService extends Service {
         data.put("temperature", weather.getTemperature());
         data.put("windSpeed", weather.getWindSpeed());
         data.put("condition", weather.getMainCondition());
-        data.put("hasRain", weather.isHasRain());
+        data.put("hasRain", weather.isHasPrecipitation());
         data.put("humidity", weather.getHumidity());
         data.put("isSuitable", false);
         

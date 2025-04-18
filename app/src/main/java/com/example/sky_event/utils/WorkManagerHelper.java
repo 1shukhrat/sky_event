@@ -33,14 +33,14 @@ public class WorkManagerHelper {
                 .build();
         
         PeriodicWorkRequest workRequest = new PeriodicWorkRequest.Builder(
-                WeatherCheckWorker.class, 6, TimeUnit.HOURS)
+                WeatherCheckWorker.class, 5, TimeUnit.MINUTES)
                 .setConstraints(constraints)
-                .setInitialDelay(1, TimeUnit.HOURS)
+                .setInitialDelay(5, TimeUnit.MINUTES)
                 .build();
-        
+
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 WEATHER_CHECK_WORK,
-                ExistingPeriodicWorkPolicy.REPLACE,
+                ExistingPeriodicWorkPolicy.UPDATE,
                 workRequest
         );
     }
@@ -110,7 +110,7 @@ public class WorkManagerHelper {
         
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 "weather_sync_work",
-                ExistingPeriodicWorkPolicy.REPLACE,
+                ExistingPeriodicWorkPolicy.UPDATE,
                 workRequest
         );
     }

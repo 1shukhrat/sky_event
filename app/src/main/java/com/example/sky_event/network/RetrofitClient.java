@@ -1,6 +1,8 @@
 package com.example.sky_event.network;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -12,6 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import com.example.sky_event.SkyEventApplication;
+import com.example.sky_event.utils.TimezoneDeserializer;
 import com.example.sky_event.utils.NetworkUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,6 +48,7 @@ public class RetrofitClient {
                 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .registerTypeAdapter(ZoneId.class, new TimezoneDeserializer())
                 .create();
 
         retrofit = new Retrofit.Builder()

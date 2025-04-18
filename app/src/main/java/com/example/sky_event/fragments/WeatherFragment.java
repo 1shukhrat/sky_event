@@ -353,7 +353,7 @@ public class WeatherFragment extends Fragment {
         binding.feelsLikeTextView.setText(getString(R.string.feels_like, weather.getFeelsLike()));
         binding.humidityTextView.setText(getString(R.string.humidity, weather.getHumidity()));
         binding.pressureTextView.setText(getString(R.string.pressure, weather.getPressure()));
-        binding.windSpeedTextView.setText(getString(R.string.wind_speed, weather.getWindSpeed()));
+        binding.windSpeedTextView.setText(getString(R.string.wind, weather.getWindSpeed()));
         
         int iconResId = getWeatherIconResource(weather.getIcon());
         binding.weatherIconImageView.setImageResource(iconResId);

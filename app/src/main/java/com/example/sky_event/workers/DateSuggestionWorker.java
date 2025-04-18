@@ -10,7 +10,6 @@ import androidx.work.WorkerParameters;
 import com.example.sky_event.database.entity.WeatherEntity;
 import com.example.sky_event.models.event.WeatherCondition;
 import com.example.sky_event.repositories.WeatherRepository;
-import com.example.sky_event.utils.WorkManagerHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -110,7 +109,7 @@ public class DateSuggestionWorker extends Worker {
                     forecast.getTemperature(),
                     forecast.getWindSpeed(),
                     forecast.getMainCondition(),
-                    forecast.isHasRain());
+                    forecast.isHasPrecipitation());
             
             if (isSuitable) {
                 Calendar forecastDate = Calendar.getInstance();

@@ -20,7 +20,6 @@ import com.example.sky_event.SkyEventApplication;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -330,7 +329,7 @@ public class WeatherViewModel extends ViewModel {
     
     private void fetchForecast(double lat, double lon) {
         Log.d("WeatherViewModel", "Вызов API прогноза");
-        Call<ForecastResponse> call = apiService.getForecast(lat, lon, UNITS, LANG, API_KEY);
+        Call<ForecastResponse> call = apiService.get3HourForecastFor5Days(lat, lon, UNITS, LANG, API_KEY);
         activeRequests.put("forecast", call);
         
         call.enqueue(new Callback<ForecastResponse>() {

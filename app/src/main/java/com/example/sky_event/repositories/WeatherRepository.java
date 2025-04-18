@@ -13,13 +13,15 @@ import com.example.sky_event.database.AppDatabase;
 import com.example.sky_event.database.dao.WeatherDao;
 import com.example.sky_event.database.entity.WeatherEntity;
 import com.example.sky_event.models.weather.CurrentWeatherResponse;
+import com.example.sky_event.models.weather.DailyForecastResponse;
 import com.example.sky_event.models.weather.ForecastResponse;
+import com.example.sky_event.models.weather.HourlyForecastResponse;
 import com.example.sky_event.models.weather.MonthlyForecast;
-import com.example.sky_event.models.weather.WeatherResponse;
 import com.example.sky_event.network.WeatherApi;
 import com.example.sky_event.utils.AppExecutors;
 import com.example.sky_event.utils.Constants;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -89,7 +91,7 @@ public class WeatherRepository {
     public LiveData<ForecastResponse> getForecast(double lat, double lon) {
         MutableLiveData<ForecastResponse> data = new MutableLiveData<>();
         
-        weatherApi.getForecast(lat, lon, UNITS, LANG, API_KEY)
+        weatherApi.get3HourForecastFor5Days(lat, lon, UNITS, LANG, API_KEY)
                 .enqueue(new Callback<ForecastResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<ForecastResponse> call, 
@@ -143,7 +145,7 @@ public class WeatherRepository {
     }
 
     public void fetchForecast(double latitude, double longitude) {
-        weatherApi.getForecast(latitude, longitude, UNITS, LANG, API_KEY)
+        weatherApi.get3HourForecastFor5Days(latitude, longitude, UNITS, LANG, API_KEY)
                 .enqueue(new Callback<ForecastResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<ForecastResponse> call, 
@@ -314,7 +316,7 @@ public class WeatherRepository {
                     entity.setMainCondition(weather.getMain());
                 }
                 
-                entity.setHasRain(item.getRain() != null && item.getRain().getThreeHour() > 0);
+                entity.setHasPrecipitation(item.getRain() != null && item.getRain().getThreeHour() > 0);
                 
                 entity.setForecastDate(new Date(item.getDt() * 1000L));
                 
@@ -357,8 +359,8 @@ public class WeatherRepository {
                     entity.setMainCondition(weatherResponse.getWeather().get(0).getMain());
                     entity.setIcon(weatherResponse.getWeather().get(0).getIcon());
                 }
-                
-                entity.setHasRain(false);
+
+                entity.setHasPrecipitation(weatherResponse.getRain() != null || weatherResponse.getSnow() != null);
                 entity.setForecastDate(new Date(weatherResponse.getDt() * 1000));
                 entity.setTimestamp(new Date());
                 
@@ -453,4 +455,19 @@ public class WeatherRepository {
         
         return forecasts;
     }
+
+
+    public HourlyForecastResponse getHourlyForecastFor4Days(double latitude, double longitude) throws IOException {
+        return weatherApi.getHourlyForecastFor4Days(latitude, longitude, UNITS, LANG, API_KEY).execute().body();
+    }
+
+    public ForecastResponse get3HourForecastFor5Days(double latitude, double longitude) throws IOException {
+        return weatherApi.get3HourForecastFor5Days(latitude, longitude, UNITS, LANG, API_KEY).execute().body();
+    }
+
+    public DailyForecastResponse getDailyForecastFor16Days(double latitude, double longitude) throws IOException {
+        return weatherApi.getDailyForecastFor16Days(latitude, longitude, UNITS, LANG, API_KEY).execute().body();
+    }
+
+
 } 

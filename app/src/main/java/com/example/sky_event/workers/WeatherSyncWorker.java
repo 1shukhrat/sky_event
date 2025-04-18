@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,13 +98,13 @@ public class WeatherSyncWorker extends Worker {
                             previousWeather.getTemperature(),
                             previousWeather.getWindSpeed(),
                             previousWeather.getMainCondition(),
-                            previousWeather.isHasRain());
+                            previousWeather.isHasPrecipitation());
                     
                     boolean isSuitable = condition.isSuitableWeather(
                             currentWeather.getTemperature(),
                             currentWeather.getWindSpeed(),
                             currentWeather.getMainCondition(),
-                            currentWeather.isHasRain());
+                            currentWeather.isHasPrecipitation());
                     
                     if (wasSuitable != isSuitable) {
                         scheduleImmediateWeatherCheck(event);
@@ -124,10 +123,9 @@ public class WeatherSyncWorker extends Worker {
         
         boolean tempChanged = Math.abs(previous.getTemperature() - current.getTemperature()) > 3;
         boolean windChanged = Math.abs(previous.getWindSpeed() - current.getWindSpeed()) > 2;
-        boolean rainChanged = previous.isHasRain() != current.isHasRain();
-        boolean conditionChanged = !previous.getMainCondition().equals(current.getMainCondition());
+        boolean rainChanged = previous.isHasPrecipitation() != current.isHasPrecipitation();
         
-        return tempChanged || windChanged || rainChanged || conditionChanged;
+        return tempChanged || windChanged || rainChanged;
     }
     
     private void scheduleImmediateWeatherCheck(EventEntity event) {

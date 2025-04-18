@@ -1,5 +1,8 @@
 package com.example.sky_event.models.weather;
 
+import com.example.sky_event.api.models.OpenWeatherForecastResponse;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class CurrentWeatherResponse {
@@ -10,6 +13,26 @@ public class CurrentWeatherResponse {
     private int visibility;
     private Wind wind;
     private Clouds clouds;
+
+    private Rain rain;
+
+    public Rain getRain() {
+        return rain;
+    }
+
+    public void setRain(Rain rain) {
+        this.rain = rain;
+    }
+
+    public Snow getSnow() {
+        return snow;
+    }
+
+    public void setSnow(Snow snow) {
+        this.snow = snow;
+    }
+
+    private Snow snow;
     private long dt;
     private Sys sys;
     private int timezone;
@@ -171,6 +194,24 @@ public class CurrentWeatherResponse {
 
         public int getAll() {
             return all;
+        }
+    }
+
+    public static class Rain {
+        @SerializedName("1h")
+        private double oneHour;
+
+        public double getThreeHour() {
+            return oneHour;
+        }
+    }
+
+    public static class Snow {
+        @SerializedName("1h")
+        private double oneHour;
+
+        public double getThreeHour() {
+            return oneHour;
         }
     }
 

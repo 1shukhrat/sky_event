@@ -102,7 +102,7 @@ public class PreloadViewModel extends AndroidViewModel {
                     }
                 });
         
-        weatherApi.getForecast(lat, lon, UNITS, LANG, API_KEY)
+        weatherApi.get3HourForecastFor5Days(lat, lon, UNITS, LANG, API_KEY)
                 .enqueue(new Callback<ForecastResponse>() {
                     @Override
                     public void onResponse(Call<ForecastResponse> call, Response<ForecastResponse> response) {

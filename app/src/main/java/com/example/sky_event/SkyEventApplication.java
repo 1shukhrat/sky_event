@@ -44,11 +44,11 @@ public class SkyEventApplication extends Application implements Configuration.Pr
         AppDatabase.clearDatabase(this);
         
         createNotificationChannels();
-        
+
         WorkManagerHelper.scheduleWeatherCheckWorker(this);
         WorkManagerHelper.scheduleWeatherSyncWorker(this);
         
-        startWeatherMonitoringService();
+       // startWeatherMonitoringService();
     }
     
     private void startWeatherMonitoringService() {

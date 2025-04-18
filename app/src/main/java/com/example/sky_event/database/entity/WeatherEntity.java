@@ -2,9 +2,6 @@ package com.example.sky_event.database.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
-import com.example.sky_event.database.converters.DateConverter;
 
 import java.util.Date;
 
@@ -28,7 +25,7 @@ public class WeatherEntity {
     private String description;
     private String icon;
     private String mainCondition;
-    private boolean hasRain;
+    private boolean hasPrecipitation;
     
     private Date timestamp;
     private Date forecastDate;
@@ -151,12 +148,12 @@ public class WeatherEntity {
         this.mainCondition = mainCondition;
     }
     
-    public boolean isHasRain() {
-        return hasRain;
+    public boolean isHasPrecipitation() {
+        return hasPrecipitation;
     }
     
-    public void setHasRain(boolean hasRain) {
-        this.hasRain = hasRain;
+    public void setHasPrecipitation(boolean hasPrecipitation) {
+        this.hasPrecipitation = hasPrecipitation;
     }
     
     public Date getTimestamp() {

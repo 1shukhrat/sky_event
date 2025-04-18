@@ -96,7 +96,7 @@ public class WeatherWidget extends AppWidgetProvider {
             int weatherIconResId = getWeatherIcon(weatherEntity.getIcon());
             views.setImageViewResource(R.id.widget_weather_icon, weatherIconResId);
             
-            boolean isGoodWeather = !weatherEntity.isHasRain() && 
+            boolean isGoodWeather = !weatherEntity.isHasPrecipitation() &&
                     weatherEntity.getTemperature() > 15 && 
                     weatherEntity.getTemperature() < 30 && 
                     weatherEntity.getWindSpeed() < 10;

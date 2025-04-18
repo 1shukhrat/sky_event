@@ -3,7 +3,7 @@ package com.example.sky_event.models.weather;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class ForecastResponse {
+public class HourlyForecastResponse {
     private String cod;
     private int message;
     private int cnt;
@@ -79,7 +79,7 @@ public class ForecastResponse {
     }
 
     public static class Rain {
-        @SerializedName("3h")
+        @SerializedName("1h")
         private float threeHour;
 
         public float getThreeHour() {
@@ -92,7 +92,7 @@ public class ForecastResponse {
     }
 
     public static class Snow {
-        @SerializedName("3h")
+        @SerializedName("1h")
         private float threeHour;
 
         public float getThreeHour() {
@@ -146,4 +146,4 @@ public class ForecastResponse {
             return sunset;
         }
     }
-} 
+}

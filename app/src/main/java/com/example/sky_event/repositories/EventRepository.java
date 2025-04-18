@@ -70,6 +70,7 @@ public class EventRepository {
         }
         return instance;
     }
+
     
     public EventRepository(Context context) {
         this.firestore = FirebaseFirestore.getInstance();
@@ -101,6 +102,10 @@ public class EventRepository {
         }
         
         fetchEventsFromFirestore(userId);
+    }
+
+    public List<EventEntity> getEventsByUserId(String userId) {
+        return eventDao.getAllEventsSync(userId);
     }
     
     public void fetchEvent(String eventId) {
@@ -588,6 +593,24 @@ public class EventRepository {
         }
         
         return new ArrayList<>();
+    }
+
+    public List<EventEntity> getEvents(String userId)
+            throws ExecutionException, InterruptedException {
+        return eventDao.getAllEventsSync(userId);
+
+//        LiveData<List<EventEntity>> liveData = future.get();
+//        MutableLiveData<List<EventEntity>> result = new MutableLiveData<>();
+//
+//        liveData.observeForever(eventEntities -> {
+//            result.postValue(eventEntities);
+//        });
+//
+//        if (result.getValue() != null) {
+//            return result.getValue();
+//        }
+//
+//        return new ArrayList<>();
     }
     
     public void saveEvent(Event event) {
