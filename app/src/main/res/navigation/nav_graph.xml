@@ -25,9 +25,6 @@
         <action
             android:id="@+id/action_eventsFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_eventsFragment_to_eventEditorFragment"
-            app:destination="@id/eventEditorFragment" />
     </fragment>
 
     <fragment
@@ -42,21 +39,8 @@
             android:id="@+id/action_eventDetailsFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
         <action
-            android:id="@+id/action_eventDetailsFragment_to_eventParticipantsFragment"
-            app:destination="@id/eventParticipantsFragment" />
-        <action
             android:id="@+id/action_eventDetailsFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/eventParticipantsFragment"
-        android:name="com.example.sky_event.fragments.EventParticipantsFragment"
-        android:label="Участники события"
-        tools:layout="@layout/fragment_event_participants">
-        <argument
-            android:name="eventId"
-            app:argType="string" />
     </fragment>
 
     <fragment
@@ -114,21 +98,6 @@
             app:destination="@id/loginFragment" 
             app:popUpTo="@id/weatherFragment"
             app:popUpToInclusive="false" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/eventEditorFragment"
-        android:name="com.example.sky_event.fragments.EventEditorFragment"
-        android:label="Редактирование события"
-        tools:layout="@layout/fragment_event_editor">
-        <argument
-            android:name="eventId"
-            app:argType="string"
-            android:defaultValue=""
-            app:nullable="true" />
-        <action
-            android:id="@+id/action_eventEditorFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
     </fragment>
     
     <fragment

@@ -92,6 +92,7 @@ public class WeatherCheckWorker extends Worker {
                 String userId = currentUser.getUid();
                 List<EventEntity> events = eventRepository.getEventsByUserId(userId);
                 for (EventEntity event: events) {
+
                     getWeatherForEvent(event, new Date());
                 }
                 return Result.success();
@@ -131,75 +132,80 @@ public class WeatherCheckWorker extends Worker {
 
 
     public void getWeatherForEvent(EventEntity event, Date currentTime) {
-        long daysDiff = getDaysDifference(currentTime, event.getDate());
-
-        try {
-            StringJoiner stringJoiner = new StringJoiner("\n");
-            if (daysDiff <= 4) {
-                HourlyForecastResponse hourlyData = weatherRepository.getHourlyForecastFor4Days(event.getLatitude(), event.getLongitude());
-                HourlyForecastResponse.ForecastItem closestTime =  findClosestOneHourly(hourlyData.getList(), event.getDate());
-                if (event.getWeatherCondition().getMinTemperature() > closestTime.getMain().getTemp()) {
-                    stringJoiner.add("Пониженная температура " + closestTime.getMain().getTemp() + " °C");
-                }
-                if (event.getWeatherCondition().getMaxTemperature() < closestTime.getMain().getTemp()) {
-                    stringJoiner.add("Повышенная температура " + closestTime.getMain().getTemp() + " °C");
-                }
-                if (event.getWeatherCondition().getMaxWindSpeed() < closestTime.getWind().getSpeed()) {
-                    stringJoiner.add("Повышенная скорость ветра " + closestTime.getWind().getSpeed() + " м/c");
-                }
-                if (event.getWeatherCondition().isNoRain()) {
-                    if (closestTime.getRain() != null) {
-                        stringJoiner.add("Ожидается дождь");
+        if (event.getDate().after(currentTime)) {
+            long daysDiff = getDaysDifference(currentTime, event.getDate());
+            try {
+                StringJoiner stringJoiner = new StringJoiner("\n");
+                if (daysDiff <= 4) {
+                    HourlyForecastResponse hourlyData = weatherRepository.getHourlyForecastFor4Days(event.getLatitude(), event.getLongitude());
+                    HourlyForecastResponse.ForecastItem closestTime =  findClosestOneHourly(hourlyData.getList(), event.getDate());
+                    if (event.getWeatherCondition().getMinTemperature() > closestTime.getMain().getTemp()) {
+                        stringJoiner.add("Пониженная температура " + closestTime.getMain().getTemp() + " °C");
+                    }
+                    if (event.getWeatherCondition().getMaxTemperature() < closestTime.getMain().getTemp()) {
+                        stringJoiner.add("Повышенная температура " + closestTime.getMain().getTemp() + " °C");
+                    }
+                    if (event.getWeatherCondition().getMaxWindSpeed() < closestTime.getWind().getSpeed()) {
+                        stringJoiner.add("Повышенная скорость ветра " + closestTime.getWind().getSpeed() + " м/c");
+                    }
+                    if (event.getWeatherCondition().isNoRain()) {
+                        if (closestTime.getRain() != null) {
+                            stringJoiner.add("Ожидается дождь");
+                        }
+                    }
+                } else if (daysDiff <= 5) {
+                    ForecastResponse threeHourlyData = weatherRepository.get3HourForecastFor5Days(event.getLatitude(), event.getLongitude());
+                    ForecastResponse.ForecastItem closestTime =  findClosestThreeHourly(threeHourlyData.getList(), event.getDate());
+                    if (event.getWeatherCondition().getMinTemperature() > closestTime.getMain().getTemp()) {
+                        stringJoiner.add("Пониженная температура " + closestTime.getMain().getTemp() + " °C");
+                    }
+                    if (event.getWeatherCondition().getMaxTemperature() < closestTime.getMain().getTemp()) {
+                        stringJoiner.add("Повышенная температура " + closestTime.getMain().getTemp() + " °C");
+                    }
+                    if (event.getWeatherCondition().getMaxWindSpeed() < closestTime.getWind().getSpeed()) {
+                        stringJoiner.add("Повышенная скорость ветра " + closestTime.getWind().getSpeed() + " м/c");
+                    }
+                    if (event.getWeatherCondition().isNoRain()) {
+                        if (closestTime.getRain() != null) {
+                            stringJoiner.add("Дождь");
+                        }
+                    }
+                } else if (daysDiff <= 16) {
+                    DailyForecastResponse dailyData = weatherRepository.getDailyForecastFor16Days(event.getLatitude(), event.getLongitude());
+                    DailyForecastResponse.WeatherData closestDay = findClosestDaily(dailyData.getList(), event.getDate());
+                    float closestTimeTemp = getNearestTimeBlock(closestDay, event.getDate());
+                    if (event.getWeatherCondition().getMinTemperature() > closestTimeTemp) {
+                        stringJoiner.add("Пониженная температура " + closestTimeTemp + " °C");
+                    }
+                    if (event.getWeatherCondition().getMaxTemperature() < closestTimeTemp) {
+                        stringJoiner.add("Повышенная температура " + closestTimeTemp + " °C");
+                    }
+                    if (event.getWeatherCondition().getMaxWindSpeed() < closestDay.getSpeed()) {
+                        stringJoiner.add("Повышенная скорость ветра " + closestDay.getSpeed() + " м/c");
+                    }
+                    if (event.getWeatherCondition().isNoRain()) {
+                        if (closestDay.getRain() != null) {
+                            stringJoiner.add("Дождь");
+                        }
+                    } else {
+                        return;
                     }
                 }
-            } else if (daysDiff <= 5) {
-                ForecastResponse threeHourlyData = weatherRepository.get3HourForecastFor5Days(event.getLatitude(), event.getLongitude());
-                ForecastResponse.ForecastItem closestTime =  findClosestThreeHourly(threeHourlyData.getList(), event.getDate());
-                if (event.getWeatherCondition().getMinTemperature() > closestTime.getMain().getTemp()) {
-                    stringJoiner.add("Пониженная температура " + closestTime.getMain().getTemp() + " °C");
+                if (stringJoiner.length() != 0) {
+                    sendWeatherAlert(event, stringJoiner.toString(), Collections.emptyList());
                 }
-                if (event.getWeatherCondition().getMaxTemperature() < closestTime.getMain().getTemp()) {
-                    stringJoiner.add("Повышенная температура " + closestTime.getMain().getTemp() + " °C");
-                }
-                if (event.getWeatherCondition().getMaxWindSpeed() < closestTime.getWind().getSpeed()) {
-                    stringJoiner.add("Повышенная скорость ветра " + closestTime.getWind().getSpeed() + " м/c");
-                }
-                if (event.getWeatherCondition().isNoRain()) {
-                    if (closestTime.getRain() != null) {
-                        stringJoiner.add("Дождь");
-                    }
-                }
-            } else if (daysDiff <= 16) {
-                DailyForecastResponse dailyData = weatherRepository.getDailyForecastFor16Days(event.getLatitude(), event.getLongitude());
-                DailyForecastResponse.WeatherData closestDay = findClosestDaily(dailyData.getList(), event.getDate());
-                float closestTimeTemp = getNearestTimeBlock(closestDay, event.getDate());
-                if (event.getWeatherCondition().getMinTemperature() > closestTimeTemp) {
-                    stringJoiner.add("Пониженная температура " + closestTimeTemp + " °C");
-                }
-                if (event.getWeatherCondition().getMaxTemperature() < closestTimeTemp) {
-                    stringJoiner.add("Повышенная температура " + closestTimeTemp + " °C");
-                }
-                if (event.getWeatherCondition().getMaxWindSpeed() < closestDay.getSpeed()) {
-                    stringJoiner.add("Повышенная скорость ветра " + closestDay.getSpeed() + " м/c");
-                }
-                if (event.getWeatherCondition().isNoRain()) {
-                    if (closestDay.getRain() != null) {
-                        stringJoiner.add("Дождь");
-                    }
-                } else {
-                    return;
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            if (stringJoiner.length() != 0) {
-                sendWeatherAlert(event, stringJoiner.toString(), Collections.emptyList());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
     }
 
     // Расчет разницы в днях между датами
     private long getDaysDifference(Date date1, Date date2) {
+        if (date2.before(date1)) {
+            return -1;
+        }
         long diffInMillis = Math.abs(date2.getTime() - date1.getTime());
         return TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS);
     }

@@ -132,13 +132,8 @@ public class EventDetailsFragment extends Fragment {
 
     private void setupButtons() {
         binding.fabEdit.setOnClickListener(v -> navigateToEdit());
-        binding.fabParticipate.setOnClickListener(v -> participateInEvent());
         binding.buttonOpenMap.setOnClickListener(v -> openMap());
-        binding.cardViewParticipants.setOnClickListener(v -> openParticipantsList());
-        binding.fabShare.setOnClickListener(v -> shareEvent());
-        binding.fabCancelParticipation.setOnClickListener(v -> cancelParticipation());
         binding.fabDelete.setOnClickListener(v -> showDeleteConfirmationDialog());
-        binding.buttonCopyLink.setOnClickListener(v -> copyEventLink());
     }
 
     private void navigateToEdit() {
@@ -147,54 +142,8 @@ public class EventDetailsFragment extends Fragment {
         Navigation.findNavController(requireView()).navigate(
                 R.id.action_eventDetailsFragment_to_createEventFragment, args);
     }
-    
-    private void participateInEvent() {
-        Event currentEvent = eventViewModel.getEvent().getValue();
-        if (currentEvent != null) {
-            if (eventViewModel.hasUserJoinedEvent(currentEvent.getId())) {
-                Toast.makeText(requireContext(), "Вы уже присоединились к этому событию", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            
-            eventViewModel.joinEvent(currentEvent.getId());
-            Toast.makeText(requireContext(), "Вы подтвердили участие в событии", Toast.LENGTH_SHORT).show();
-            updateParticipationButtonsVisibility(true);
-        }
-    }
 
-    private void cancelParticipation() {
-        Event currentEvent = eventViewModel.getEvent().getValue();
-        if (currentEvent != null) {
-            eventViewModel.leaveEvent(currentEvent.getId());
-            Toast.makeText(requireContext(), "Вы отменили участие в событии", Toast.LENGTH_SHORT).show();
-            updateParticipationButtonsVisibility(false);
-        }
-    }
-    
-    private void shareEvent() {
-        Event currentEvent = eventViewModel.getEvent().getValue();
-        if (currentEvent != null) {
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, currentEvent.getName());
-            
-            String eventLink = generateEventLink(currentEvent.getId());
-            
-            String shareMessage = "Приглашаю на событие: " + currentEvent.getName() + "\n" +
-                    "Дата: " + dateFormat.format(currentEvent.getDate()) + "\n" +
-                    "Место: " + currentEvent.getLocation() + "\n\n" +
-                    currentEvent.getDescription() + "\n\n" +
-                    "Присоединяйтесь: " + eventLink;
-            
-            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-            startActivity(Intent.createChooser(shareIntent, "Поделиться событием"));
-        }
-    }
-    
-    private String generateEventLink(String eventId) {
-        return "https://skyevent.app/event/" + eventId;
-    }
-    
+
     private void openMap() {
         Event currentEvent = eventViewModel.getEvent().getValue();
         if (currentEvent != null) {
@@ -209,15 +158,7 @@ public class EventDetailsFragment extends Fragment {
             }
         }
     }
-    
-    private void openParticipantsList() {
-        if (eventId != null) {
-            Bundle args = new Bundle();
-            args.putString("eventId", eventId);
-            Navigation.findNavController(requireView()).navigate(
-                    R.id.action_eventDetailsFragment_to_eventParticipantsFragment, args);
-        }
-    }
+
 
     private void observeViewModel() {
         eventViewModel.getEvent().observe(getViewLifecycleOwner(), event -> {
@@ -248,8 +189,6 @@ public class EventDetailsFragment extends Fragment {
         binding.textViewEventName.setText(event.getName());
         binding.textViewEventDescription.setText(event.getDescription());
         
-        binding.chipCategory.setText(event.getCategory());
-        
         if (event.getDate() != null) {
             binding.textViewEventDate.setText(dateFormat.format(event.getDate()));
         } else {
@@ -257,23 +196,8 @@ public class EventDetailsFragment extends Fragment {
         }
         
         binding.textViewEventLocation.setText(event.getLocation());
-        
-        updateParticipantsInfo(event);
+
         updateWeatherInfo(event);
-        updateParticipationButtonsVisibility(eventViewModel.hasUserJoinedEvent(event.getId()));
-        
-        String eventLink = generateEventLink(event.getId());
-        binding.textViewEventLink.setText(eventLink);
-    }
-    
-    private void updateParticipantsInfo(Event event) {
-        String participantsText = event.getParticipantsCount() + " человек";
-        if (event.getParticipantsCount() % 10 == 1 && event.getParticipantsCount() % 100 != 11) {
-            participantsText += " подтвердил участие";
-        } else {
-            participantsText += " подтвердили участие";
-        }
-        binding.textViewParticipantsCount.setText(participantsText);
     }
     
     private void updateWeatherInfo(Event event) {
@@ -310,22 +234,7 @@ public class EventDetailsFragment extends Fragment {
             return R.drawable.ic_weather_partly_cloudy_day;
         }
     }
-    
-    private String getWindDirection() {
-        String[] directions = {"северный", "северо-восточный", "восточный", "юго-восточный", 
-                "южный", "юго-западный", "западный", "северо-западный"};
-        return directions[(int)(Math.random() * directions.length)];
-    }
 
-    private void updateParticipationButtonsVisibility(boolean isParticipating) {
-        if (isParticipating) {
-            binding.fabParticipate.setVisibility(View.GONE);
-            binding.fabCancelParticipation.setVisibility(View.VISIBLE);
-        } else {
-            binding.fabParticipate.setVisibility(View.VISIBLE);
-            binding.fabCancelParticipation.setVisibility(View.GONE);
-        }
-    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -354,19 +263,6 @@ public class EventDetailsFragment extends Fragment {
     private void deleteEvent() {
         if (eventId != null) {
             eventViewModel.deleteEvent(eventId);
-        }
-    }
-
-    private void copyEventLink() {
-        Event currentEvent = eventViewModel.getEvent().getValue();
-        if (currentEvent != null) {
-            String eventLink = generateEventLink(currentEvent.getId());
-            
-            ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("Ссылка на событие", eventLink);
-            clipboard.setPrimaryClip(clip);
-            
-            Toast.makeText(requireContext(), "Ссылка скопирована", Toast.LENGTH_SHORT).show();
         }
     }
 

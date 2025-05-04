@@ -61,12 +61,10 @@ public class MapFragment extends Fragment implements InputListener, Session.Sear
     private MapObjectCollection mapObjects;
     private MapObjectCollection userLocationCollection;
     private MapObjectCollection attractionsCollection;
-    private boolean attractionsVisible = false;
     private float currentZoom = DEFAULT_ZOOM;
     private static final float MIN_ZOOM = 3.0f;
     private static final float MAX_ZOOM = 20.0f;
     private static final float ZOOM_STEP = 1.0f;
-    private static final String[] ATTRACTION_CATEGORIES = {"museum", "park", "theatre", "gallery", "monument"};
     private boolean isMapReady = false;
 
     @Override
@@ -166,7 +164,6 @@ public class MapFragment extends Fragment implements InputListener, Session.Sear
         binding.buttonZoomIn.setOnClickListener(v -> zoomIn());
         binding.buttonZoomOut.setOnClickListener(v -> zoomOut());
         binding.buttonMyLocation.setOnClickListener(v -> getCurrentLocation());
-        binding.buttonShowAttractions.setOnClickListener(v -> toggleAttractions());
         binding.fabFindMe.setOnClickListener(v -> animateToCurrentLocation());
     }
     
@@ -313,9 +310,6 @@ public class MapFragment extends Fragment implements InputListener, Session.Sear
                 addUserLocationMarker(userLocation);
             }
 
-            if (attractionsVisible) {
-                searchAttractions();
-            }
         } catch (Exception e) {
             Toast.makeText(requireContext(),
                     "Ошибка добавления маркера",
@@ -352,73 +346,6 @@ public class MapFragment extends Fragment implements InputListener, Session.Sear
         binding.mapView.getMap().setMapType(MapType.MAP);
     }
 
-    private void toggleAttractions() {
-        attractionsVisible = !attractionsVisible;
-
-        if (attractionsVisible) {
-            binding.buttonShowAttractions.setImageResource(R.drawable.ic_location_marker);
-            searchAttractions();
-        } else {
-            binding.buttonShowAttractions.setImageResource(R.drawable.ic_location);
-            clearAttractionMarkers();
-        }
-    }
-
-    private void searchAttractions() {
-        if (selectedPoint == null || !isMapReady) return;
-
-        clearAttractionMarkers();
-        binding.progressBar.setVisibility(View.VISIBLE);
-
-        final int[] categoriesSearched = {0};
-
-        for (String category : ATTRACTION_CATEGORIES) {
-            try {
-                SearchOptions options = new SearchOptions();
-                searchSession = searchManager.submit(
-                        category,
-                        Geometry.fromPoint(selectedPoint),
-                        options,
-                        new Session.SearchListener() {
-                            @Override
-                            public void onSearchResponse(@NonNull Response response) {
-                                if (!attractionsVisible || !isMapReady) return;
-
-                                try {
-                                    for (int i = 0; i < response.getCollection().getChildren().size() && i < 5; i++) {
-                                        Point point = response.getCollection().getChildren().get(i).getObj().getGeometry().get(0).getPoint();
-                                        String name = response.getCollection().getChildren().get(i).getObj().getName();
-
-                                        if (point != null) {
-                                            addAttractionMarker(point, name);
-                                        }
-                                    }
-                                } catch (Exception e) {
-                                }
-
-                                categoriesSearched[0]++;
-                                if (categoriesSearched[0] >= ATTRACTION_CATEGORIES.length) {
-                                    binding.progressBar.setVisibility(View.GONE);
-                                }
-                            }
-
-                            @Override
-                            public void onSearchError(@NonNull Error error) {
-                                categoriesSearched[0]++;
-                                if (categoriesSearched[0] >= ATTRACTION_CATEGORIES.length) {
-                                    binding.progressBar.setVisibility(View.GONE);
-                                }
-                            }
-                        });
-            } catch (Exception e) {
-                categoriesSearched[0]++;
-                if (categoriesSearched[0] >= ATTRACTION_CATEGORIES.length) {
-                    binding.progressBar.setVisibility(View.GONE);
-                }
-            }
-        }
-    }
-
     private void addAttractionMarker(Point point, String name) {
         if (!isMapReady || attractionsCollection == null) return;
 
@@ -438,14 +365,6 @@ public class MapFragment extends Fragment implements InputListener, Session.Sear
         }
     }
 
-    private void clearAttractionMarkers() {
-        if (attractionsCollection != null && isMapReady) {
-            try {
-                attractionsCollection.clear();
-            } catch (Exception e) {
-            }
-        }
-    }
 
     @Override
     public void onMapTap(@NonNull Map map, @NonNull Point point) {

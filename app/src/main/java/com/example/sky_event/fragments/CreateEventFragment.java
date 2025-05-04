@@ -59,7 +59,6 @@ public class CreateEventFragment extends Fragment {
         binding.progressBar.setVisibility(View.GONE);
         
         setupViewModel();
-        setupCategoryDropdown();
         
         String eventId = getEventIdFromArguments();
         if (eventId != null) {
@@ -132,31 +131,10 @@ public class CreateEventFragment extends Fragment {
         });
     }
 
-    private void setupCategoryDropdown() {
-        String[] categories = {"Спорт", "Развлечения", "Образование", "Культура", "Бизнес", "Технологии", "Другое"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(),
-                R.layout.item_dropdown,
-                categories);
-        binding.dropdownCategory.setAdapter(adapter);
-        binding.dropdownCategory.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedCategory = adapter.getItem(position);
-            if (event != null) {
-                event.setCategory(selectedCategory);
-            }
-        });
-        
-        if (event != null && event.getCategory() != null) {
-            binding.dropdownCategory.setText(event.getCategory(), false);
-        }
-    }
-
     private void updateUI() {
         if (event != null) {
             binding.editTextName.setText(event.getName());
             binding.editTextDescription.setText(event.getDescription());
-            
-            binding.dropdownCategory.setText(event.getCategory(), false);
             
             if (event.getDate() != null) {
                 calendar.setTime(event.getDate());
@@ -217,13 +195,7 @@ public class CreateEventFragment extends Fragment {
         } else {
             event.setName("Новое событие");
         }
-        
-        String category = binding.dropdownCategory.getText().toString().trim();
-        if (!category.isEmpty()) {
-            event.setCategory(category);
-        } else {
-            event.setCategory("Другое");
-        }
+
         
         String location = binding.textViewLocation.getText().toString().trim();
         if (!location.isEmpty()) {
@@ -263,17 +235,17 @@ public class CreateEventFragment extends Fragment {
             WeatherCondition conditions = event.getWeatherCondition();
             
             String minTempStr = binding.editTextMinTemp.getText().toString().trim();
-            if (!minTempStr.isEmpty()) {
+            if (!minTempStr.isBlank()) {
                 conditions.setMinTemperature(Double.parseDouble(minTempStr));
             }
             
             String maxTempStr = binding.editTextMaxTemp.getText().toString().trim();
-            if (!maxTempStr.isEmpty()) {
+            if (!maxTempStr.isBlank()) {
                 conditions.setMaxTemperature(Double.parseDouble(maxTempStr));
             }
             
             String windSpeedStr = binding.editTextWindSpeed.getText().toString().trim();
-            if (!windSpeedStr.isEmpty()) {
+            if (!windSpeedStr.isBlank()) {
                 conditions.setMaxWindSpeed(Double.parseDouble(windSpeedStr));
             } else {
                 conditions.setMaxWindSpeed(0);
@@ -413,12 +385,10 @@ public class CreateEventFragment extends Fragment {
     private void updateEventFromInputs() {
         String name = binding.editTextName.getText().toString().trim();
         String description = binding.editTextDescription.getText().toString().trim();
-        String category = binding.dropdownCategory.getText().toString().trim();
-        
+
         event.setName(name);
         event.setDescription(description);
-        event.setCategory(category);
-        
+
         if (event.getDate() == null) {
             event.setDate(calendar.getTime());
         }

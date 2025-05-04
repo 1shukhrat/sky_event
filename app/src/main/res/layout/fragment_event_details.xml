@@ -7,7 +7,6 @@
     android:background="?android:attr/colorBackground"
     tools:context=".fragments.EventDetailsFragment">
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,17 +30,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Пикник в парке" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipCategory"
-                style="@style/Widget.SkyEvent.Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:textAppearance="?attr/textAppearanceCaption"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewEventName"
-                tools:text="Развлечения" />
-
             <TextView
                 android:id="@+id/textViewEventDescription"
                 android:layout_width="0dp"
@@ -50,8 +38,8 @@
                 android:textAppearance="?attr/textAppearanceBody1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chipCategory"
-                tools:text="Описание события с деталями о том, что планируется и какие нужны подготовления." />
+                app:layout_constraintTop_toBottomOf="@id/textViewEventName"
+                tools:text="Детали события" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardViewDateTime"
@@ -319,124 +307,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardViewParticipants"
-                style="@style/Widget.SkyEvent.CardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="?attr/colorSurface"
-                app:layout_constraintTop_toBottomOf="@id/cardViewWeather">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/card_padding">
-
-                    <ImageView
-                        android:id="@+id/imageViewPeople"
-                        android:layout_width="@dimen/icon_size_small"
-                        android:layout_height="@dimen/icon_size_small"
-                        android:tint="?attr/colorPrimary"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_people" />
-
-                    <TextView
-                        android:id="@+id/textViewParticipantsLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_large"
-                        android:text="Участники"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="?attr/colorSecondary"
-                        app:layout_constraintStart_toEndOf="@id/imageViewPeople"
-                        app:layout_constraintTop_toTopOf="@id/imageViewPeople" />
-
-                    <TextView
-                        android:id="@+id/textViewParticipantsCount"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_large"
-                        android:layout_marginTop="@dimen/spacing_small"
-                        android:textAppearance="?attr/textAppearanceBody1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/imageViewPeople"
-                        app:layout_constraintTop_toBottomOf="@id/textViewParticipantsLabel"
-                        tools:text="10 человек подтвердили участие" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardViewShareLink"
-                style="@style/Widget.SkyEvent.CardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_medium"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="?attr/colorSurface"
-                app:layout_constraintTop_toBottomOf="@id/cardViewParticipants">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/card_padding">
-
-                    <ImageView
-                        android:id="@+id/imageViewLink"
-                        android:layout_width="@dimen/icon_size_small"
-                        android:layout_height="@dimen/icon_size_small"
-                        android:tint="?attr/colorPrimary"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_share" />
-
-                    <TextView
-                        android:id="@+id/textViewLinkLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_large"
-                        android:text="Ссылка на событие"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="?attr/colorSecondary"
-                        app:layout_constraintStart_toEndOf="@id/imageViewLink"
-                        app:layout_constraintTop_toTopOf="@id/imageViewLink" />
-
-                    <TextView
-                        android:id="@+id/textViewEventLink"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_large"
-                        android:layout_marginTop="@dimen/spacing_small"
-                        android:layout_marginEnd="@dimen/spacing_small"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:textAppearance="?attr/textAppearanceBody1"
-                        app:layout_constraintEnd_toStartOf="@id/buttonCopyLink"
-                        app:layout_constraintStart_toEndOf="@id/imageViewLink"
-                        app:layout_constraintTop_toBottomOf="@id/textViewLinkLabel"
-                        tools:text="https://skyevent.app/event/event1234" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/buttonCopyLink"
-                        style="@style/Widget.SkyEvent.Button.Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Копировать"
-                        app:icon="@drawable/ic_copy"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="36dp"
@@ -454,7 +324,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/spacing_xlarge"
-                app:layout_constraintTop_toBottomOf="@id/cardViewShareLink"
+                app:layout_constraintTop_toBottomOf="@id/cardViewWeather"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -495,28 +365,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fabShare"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/spacing_medium"
-                    android:text="Поделиться"
-                    app:icon="@drawable/ic_share"
-                    app:iconTint="?attr/colorSecondary"
-                    app:strokeColor="?attr/colorSecondary" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fabParticipate"
-                    style="@style/Widget.MaterialComponents.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="?attr/colorPrimary"
-                    android:text="Участвовать"
-                    android:textColor="?attr/colorOnPrimary"
-                    app:icon="@drawable/ic_check"
-                    app:iconTint="?attr/colorOnPrimary" />
-
-                <com.google.android.material.button.MaterialButton
                     android:id="@+id/fabCancelParticipation"
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="match_parent"
@@ -527,10 +375,10 @@
                     android:visibility="gone"
                     app:icon="@drawable/ic_close"
                     app:iconTint="?attr/colorOnError" />
-                
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout> 
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
