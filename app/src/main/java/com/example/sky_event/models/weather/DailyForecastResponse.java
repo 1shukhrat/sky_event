@@ -1,7 +1,5 @@
 package com.example.sky_event.models.weather;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.time.ZoneId;
 import java.util.List;
 

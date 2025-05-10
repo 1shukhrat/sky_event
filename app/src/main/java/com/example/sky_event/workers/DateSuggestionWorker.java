@@ -139,18 +139,6 @@ public class DateSuggestionWorker extends Worker {
             
             Calendar now = Calendar.getInstance();
             
-            boolean isWeekend1 = cal1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || 
-                    cal1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
-            
-            boolean isWeekend2 = cal2.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || 
-                    cal2.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
-            
-            if (isWeekend1 && !isWeekend2) {
-                return -1;
-            } else if (!isWeekend1 && isWeekend2) {
-                return 1;
-            }
-            
             long diff1 = Math.abs(cal1.getTimeInMillis() - now.getTimeInMillis());
             long diff2 = Math.abs(cal2.getTimeInMillis() - now.getTimeInMillis());
             

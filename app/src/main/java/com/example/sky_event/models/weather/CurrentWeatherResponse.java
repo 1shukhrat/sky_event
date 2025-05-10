@@ -1,6 +1,5 @@
 package com.example.sky_event.models.weather;
 
-import com.example.sky_event.api.models.OpenWeatherForecastResponse;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
